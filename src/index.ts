@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 //For env File 
 dotenv.config();
 
-const app: Application = express();
-
 const PORT = process.env.PORT || 1234;
+
+const app: Application = express();
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200)
