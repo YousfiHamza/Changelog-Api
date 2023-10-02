@@ -3,11 +3,32 @@
   "version": "1.0.0",
   "description": "USERS-MANAGEMENT-API",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "build": "npx tsc",
+    "dev": "nodemon index.ts",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["API", "NODE"],
+  "keywords": [
+    "API",
+    "NODE"
+  ],
   "author": "HAMZA YOUSFI",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.14",
+    "@types/express": "^4.17.18",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
 }
