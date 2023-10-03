@@ -1,8 +1,0 @@
-.cache
-.next
-.swc
-storybook-static
-.github
-.husky
-
-next-env.d.ts

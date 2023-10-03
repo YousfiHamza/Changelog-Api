@@ -1,7 +1,6 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "bracketSameLine": false,
   "printWidth": 120,
@@ -12,6 +11,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "useTabs": false
 }
