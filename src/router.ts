@@ -1,6 +1,8 @@
 import { Router, Response } from "express";
+import { body, validationResult } from "express-validator";
 
 import { CustomRequest as Request } from "./modules/auth";
+import { handleInputErrors } from "./modules/middlewares";
 
 import { User } from "@prisma/client";
 
@@ -16,9 +18,11 @@ router.get("/product", (req: Request, res: Response) => {
 
 // router.get("/product/:id", (req: Request, res: Response) => {});
 
-// router.post("/product", (req: Request, res: Response) => {});
+router.post("/product", body("name").isString(), handleInputErrors, (req: Request, res: Response) => {
+  return res.json({ message: `Hello ${req.body.username}` });
+});
 
-// router.put("/product/:id", (req: Request, res: Response) => {});
+router.put("/product/:id", handleInputErrors, (req: Request, res: Response) => {});
 
 // router.delete("/product/:id", (req: Request, res: Response) => {});
 
