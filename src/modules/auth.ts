@@ -3,6 +3,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
 
 import { User } from "@prisma/client";
+import { CustomError } from "../handlers/error";
 
 export interface CustomRequest extends Request {
   user?: string | JwtPayload;
@@ -23,20 +24,20 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
   const bearer = req.headers.authorization;
 
   if (!bearer || !bearer.startsWith("Bearer ")) {
-    return res.status(401).send("You are not authorized to access this route");
+    return next(new CustomError("You are not authorized to access this route", 401, []));
   }
 
   const [, token] = bearer.split(" ");
 
   if (!token) {
-    return res.status(401).send("Not A Valid Token");
+    return next(new CustomError("Not A Valid Token", 401, []));
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     (req as CustomRequest).user = decoded;
   } catch (err) {
-    return res.status(401).send("Not A Valid User");
+    return next(new CustomError("Not A Valid User!", 403, []));
   }
 
   next();

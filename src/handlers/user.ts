@@ -1,38 +1,35 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import db from "../db";
 import { comparePasswords, createJWT, hashPassword } from "../modules/auth";
+import { CustomError } from "./error";
 
-export const createUser = async (req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (!req.body.password || !req.body.password.length || !req.body.username) {
-      return res.status(400).send("Error Getting Password");
+    let user;
+    try {
+      const password = await hashPassword(req.body.password);
+
+      user = await db.user.create({
+        data: {
+          username: req.body.username,
+          password,
+        },
+      });
+    } catch (e) {
+      return next(new CustomError("Error Creating a user!", 400));
     }
-
-    const password = await hashPassword(req.body.password);
-
-    const user = await db.user.create({
-      data: {
-        username: req.body.username,
-        password,
-      },
-    });
 
     const token = createJWT(user);
 
     res.status(201).json({ username: user.username, token });
   } catch (err) {
-    console.log(err);
-    res.status(500).send("Something Went Wrong Creating the user");
+    return next(new CustomError("Something Went Wrong Creating the user!", 500));
   }
 };
 
-export const signin = async (req: Request, res: Response) => {
+export const signin = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (!req.body.password || !req.body.password.length || !req.body.username) {
-      return res.status(400).send("Error getting Credentials!");
-    }
-
     const user = await db.user.findUnique({
       where: {
         username: req.body.username,
@@ -40,13 +37,13 @@ export const signin = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      return res.status(401).send("Wrong Credentials!");
+      return next(new CustomError("Wrong Credentials!", 401));
     }
 
     const isValidPassword = await comparePasswords(req.body.password, user!.password);
 
     if (!isValidPassword) {
-      return res.status(401).send("Wrong Credentials!");
+      return next(new CustomError("Wrong Credentials!", 401));
     }
 
     const token = createJWT(user);
@@ -54,6 +51,6 @@ export const signin = async (req: Request, res: Response) => {
     res.status(200).json({ username: user.username, token });
   } catch (err) {
     console.log(err);
-    res.status(500).send("Something Went Wrong Signing In");
+    return next(new CustomError("Something Went Wrong Signing In", 500, [err]));
   }
 };

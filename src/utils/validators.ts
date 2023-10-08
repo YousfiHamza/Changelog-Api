@@ -1,5 +1,8 @@
 import { body, oneOf } from "express-validator";
 
+export const signUpValidator = [body("username").isString().notEmpty(), body("password").isString().notEmpty()];
+export const signInValidator = [body("username").isString(), body("password").isString()];
+
 export const productPutValidator = [body("name").isString()];
 
 export const updatePostValidator = [
