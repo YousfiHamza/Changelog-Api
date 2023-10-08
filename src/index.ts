@@ -3,6 +3,8 @@ import dotenv from "dotenv"; // For env File
 import morgan from "morgan"; // For logging
 import cors from "cors"; // For Cross Origin Resource Sharing
 
+import Config from "./config";
+
 import ProductRouter from "./routers/product";
 import UpdateRouter from "./routers/update";
 import UserRouter from "./routers/user";
@@ -16,7 +18,7 @@ serverErrorHandler();
 dotenv.config();
 
 // PORT
-const PORT = process.env.PORT || 1234;
+const PORT = Config.port;
 
 const app: Application = express();
 

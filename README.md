@@ -10,6 +10,7 @@ This Project was built for lerning purposes on how to develop production grade A
 - Handeling authentication and protecting our main routes by implementing an auth middleware using `JWT`.
 - Implementing a middleware for Input Validation using `express-validator`
 - Implementing a middleware to gracefully handle errors from our `express` route handlers or even from the `node.js` server.
+- Creating Environment Configurations (for future use).
 
 ## Design
 
@@ -18,3 +19,7 @@ https://www.framer.com/templates/chronos/
 ## Design Preview
 
 https://chronos.framer.website/all-features
+
+#### PS:
+
+The `ENV` variables are still present just for demo purposes, they can't be exploited 😉 ...
