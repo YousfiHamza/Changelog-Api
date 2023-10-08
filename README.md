@@ -11,6 +11,8 @@ This Project was built for lerning purposes on how to develop production grade A
 - Implementing a middleware for Input Validation using `express-validator`
 - Implementing a middleware to gracefully handle errors from our `express` route handlers or even from the `node.js` server.
 - Creating Environment Configurations (for future use).
+- Setting Up and implementing Unit Tests using `JEST`
+- Setting Up and integration Unit Tests using `SUPERTEST`
 
 ## Design
 
