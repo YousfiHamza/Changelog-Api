@@ -1,44 +1,41 @@
-import { Router, Response } from "express";
-import { body, validationResult } from "express-validator";
+import { Router } from "express";
+import { body } from "express-validator";
 
-import { CustomRequest as Request } from "./modules/auth";
+import { createProduct, deleteProduct, getOneProduct, getProducts, updateProduct } from "./handlers/product";
+
 import { handleInputErrors } from "./modules/middlewares";
 
-import { User } from "@prisma/client";
+import { productPutValidator, updatePutValidator, updatePostValidator } from "./utils/validators";
+import { createUpdate, deleteUpdate, getOneUpdate, getUpdatesByUser, updateUpdate } from "./handlers/update";
 
 const router = Router();
+
 /**
  * Product
  */
-router.get("/product", (req: Request, res: Response) => {
-  const user = req.user as User;
-  if (user) res.json({ message: `Hello ${user.username}` });
-  else res.status(500).json({ message: `ERROR LOGIC` });
-});
+router.get("/product", getProducts);
 
-// router.get("/product/:id", (req: Request, res: Response) => {});
+router.get("/product/:id", getOneProduct);
 
-router.post("/product", body("name").isString(), handleInputErrors, (req: Request, res: Response) => {
-  return res.json({ message: `Hello ${req.body.username}` });
-});
+router.post("/product", body("name").isString(), handleInputErrors, createProduct);
 
-router.put("/product/:id", handleInputErrors, (req: Request, res: Response) => {});
+router.put("/product/:id", productPutValidator, handleInputErrors, updateProduct);
 
-// router.delete("/product/:id", (req: Request, res: Response) => {});
+router.delete("/product/:id", deleteProduct);
 
 // /**
 //  * Update
 //  */
 
-// router.get("/update", (req: Request, res: Response) => {});
+router.get("/update", getUpdatesByUser);
 
-// router.get("/update/:id", (req: Request, res: Response) => {});
+router.get("/update/:id", getOneUpdate);
 
-// router.post("/update", (req: Request, res: Response) => {});
+router.post("/update", updatePostValidator, handleInputErrors, createUpdate);
 
-// router.put("/update/:id", (req: Request, res: Response) => {});
+router.put("/update/:id", updatePutValidator, handleInputErrors, updateUpdate);
 
-// router.delete("/update/:id", (req: Request, res: Response) => {});
+router.delete("/update/:id", deleteUpdate);
 
 // /**
 //  * UpdatePoint
@@ -48,9 +45,9 @@ router.put("/product/:id", handleInputErrors, (req: Request, res: Response) => {
 
 // router.get("/updatepoint/:id", (req: Request, res: Response) => {});
 
-// router.post("/updatepoint", (req: Request, res: Response) => {});
+// router.post("/updatepoint", handleInputErrors, (req: Request, res: Response) => {});
 
-// router.put("/updatepoint/:id", (req: Request, res: Response) => {});
+// router.put("/updatepoint/:id", updatePointPutValidator, handleInputErrors, (req: Request, res: Response) => {});
 
 // router.delete("/updatepoint/:id", (req: Request, res: Response) => {});
 
