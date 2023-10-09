@@ -29,9 +29,11 @@ app.use(express.urlencoded({ extended: true })); // For parsing application/x-ww
  * Routes
  */
 
-const API_ROUTES = [ProductRouter, UpdateRouter, UserRouter];
+const API_ROUTES = [ProductRouter, UpdateRouter];
 
 app.use("/api", protect, API_ROUTES);
+
+app.use("/user", UserRouter);
 
 // Error Handler : SHOULD have it at the end of the file ... it gets triggered when a routhe `THROW` an error
 

@@ -10,8 +10,8 @@ const router = Router();
 //  * User
 //  */
 
-router.post("/user/signup", signUpValidator, handleInputErrors, signup);
+router.post("/signup", signUpValidator, handleInputErrors, signup);
 
-router.post("/user/signin", signInValidator, handleInputErrors, signin);
+router.post("/signin", signInValidator, handleInputErrors, signin);
 
 export default router;
