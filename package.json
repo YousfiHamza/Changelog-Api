@@ -4,15 +4,17 @@
   "description": "Changelog API",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
     "dev": "nodemon src/index.ts",
+    "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "test:watch": "jest --watch"
   },
   "keywords": [
     "API",
-    "NODE"
+    "NODE",
+    "CHANGELOG",
+    "YOUSFI"
   ],
   "author": "HAMZA YOUSFI",
   "license": "ISC",

@@ -30,4 +30,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# CSV
 *.csv
+
+# Build folder
+dist/
