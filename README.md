@@ -1,4 +1,8 @@
-# Disclaimer
+# Changelog API
+
+The Project is Live on [https://changelog-api.com](https://changelog-api-1abz.onrender.com) if you wanna give it a try 🦔 !
+
+### Disclaimer ⚠
 
 This Project was built for lerning purposes on how to develop PRODUCTION-GRADE API using `Node.js` 💪 , so by any means its considered 'FINISHED', i'm still working on it 👨🏽‍🏭, so feel free to open issues on submit Pull requests, all contribution are welcome 😉!
 
@@ -16,11 +20,17 @@ This Project was built for lerning purposes on how to develop PRODUCTION-GRADE A
 - Preparing the app for deployement (scripts, ...)
 - Continuous deployement with `RENDER`
 
-## Design
+## IN THE NEXT RELEASE 😎
+
+- Finishing Unit & Integration tests on all Routes/Handlers.
+- Building a CI pipeline with Github Actions.
+- Writing Documentation.
+
+### Design 🖼
 
 https://www.framer.com/templates/chronos/
 
-## Design Preview
+### Design Preview 📄
 
 https://chronos.framer.website/all-features
 
