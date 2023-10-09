@@ -17,14 +17,14 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
         },
       });
     } catch (e) {
-      return next(new CustomError("Error Creating a user!", 400));
+      return next(new CustomError("Error Creating a user!!", 400, [e]));
     }
 
     const token = createJWT(user);
 
     res.status(201).json({ username: user.username, token });
   } catch (err) {
-    return next(new CustomError("Something Went Wrong Creating the user!", 500));
+    return next(new CustomError("Something Went Wrong Creating the user!", 500, [err]));
   }
 };
 

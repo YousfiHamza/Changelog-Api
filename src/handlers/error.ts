@@ -6,13 +6,18 @@ import { NextFunction, Request, Response } from "express";
  */
 
 export class CustomError extends Error {
-  constructor(message: string, status?: 400 | 401 | 403 | 422 | 500, errors?: unknown[], isOperational?: boolean) {
+  constructor(
+    message: string,
+    status?: 400 | 401 | 403 | 404 | 422 | 500,
+    errors?: unknown[],
+    isOperational?: boolean,
+  ) {
     super(message);
     this.status = status || 500;
     this.errors = errors || [];
     this.isOperational = isOperational || true;
   }
-  status?: 400 | 401 | 403 | 422 | 500;
+  status?: 400 | 401 | 403 | 404 | 422 | 500;
   errors?: unknown[];
   isOperational?: boolean;
 }

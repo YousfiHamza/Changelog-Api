@@ -33,7 +33,7 @@ export const getProducts = async (req: Request, res: Response, next: NextFunctio
       },
     });
 
-    if (!user) return next(new CustomError("Error Getting Owner of the Products", 403)); // may be jus an over verification since we alreafy have the `protect` middleware.
+    if (!user) return next(new CustomError("Error Getting Owner of the Products", 404)); // may be jus an over verification since we alreafy have the `protect` middleware.
 
     res.status(200).json({ products: user.products });
   } catch (err) {
